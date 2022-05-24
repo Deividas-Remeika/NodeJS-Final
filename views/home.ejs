@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head')%>
+  <title>Dienoraščių puslapis</title>
+</head>
+<body>
+  <div class="mainContainer">
+    <div class="isrikiavimas">
+      <form action="/home" method="GET" class="rikiavimoForma">
+        <h2>Išsirūšiuokite mūsų puslapyje esančius dienoraščius</h2>
+            <select name="isrikiuotiPagal" id="isrikiuotiPagal" class="inputas">
+             <option value="null">Pasirinkite vieną iš galimų pasirinkimų</option>
+              <option value="title">Išrūšiuoti pagal pavadinimą</option>
+               <option value="id">Išrūšiuoti pagal ID</option>
+               <option value="created_at">Išrūšiuoti pagal sukūrimo laiką</option>
+            </select>
+            <br>
+            <select name="isrikiavimas" id="isrikiavimas" class="inputas">
+              <option value="null">Pasirinkite vieną iš galimų pasirinkimų</option>
+              <option value="didejanti">Didėjančia tvarka</option>
+              <option value="mazejanti">Mažėjančia tvarka</option>
+            </select>
+            <br>
+            <input type="submit" class="submitButton" value="Išrikiuoti">
+            </form>
+            <a href="/home"><button class="resetButton">Perkrauti rikiavimą</button></a>
+     </div>
+<%blogs.forEach(item=>{%>
+  <div class="content">
+    <div class="content_id">Dienoraščio ID: <%=item.id%></div>
+    <div class="content_title">Pavadinimas: <%=item.title%></div>
+    <div class="content_contents"><p><%=item.content%></p></div>
+  </div>
+<%})%>
+  </div>
+</body>
+</html> 
