@@ -1,0 +1,10 @@
+<% if(auth){ %>
+  <a href="/addbar"><button class="reset1">Add bar</button></a>
+  <a href="/logout"><button class="reset1"  onclick="logout()">Atsijungti</button></a>
+  
+  <% } else{ %>
+    <a href="/login"><button class="reset1">Prisijungti</button></a>
+    <p>Arba</p>
+    <a href="/register"><button class="reset1">Registruotis</button></a>
+   
+<% } %> 

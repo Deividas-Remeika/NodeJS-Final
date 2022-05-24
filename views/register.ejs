@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head')%>
+</head>
+<body>
+  <% if(userName != '') { %>
+    <h1 class="registerSuccess">Sveikiname jūsų registracija pavyko! Dabar galite prisijungti - <%= userName %></h1>
+  <% } %>
+  <div class="forma">
+    <form action="/register" method="POST" class="registracija">
+      <h2>Registracija</h2>
+      <label for="name" class="input">Jūsų Vardas</label>
+      <br>
+      <input type="name" name="name" id="name" class="input" placeholder="Pvz: Deividas">
+      <br>
+      <label for="email" class="input">Jūsų El.pašto adresas</label>
+      <br>
+      <input type="email" name="email" id="email" class="input" placeholder="Pvz: info@one.lt">
+      <br>
+      <label for="pass" class="password">Jūsų slaptažodis</label>
+      <br>
+      <input type="password" name="password" id="pass" class="input" placeholder="Įveskite saugų slaptažodį" >
+      <br>
+       <label for="repeatPassword" class="input">Pakartokite slaptažodį</label>
+      <br>
+      <input type="password" name="repeatPassword" id="pass" class="input" placeholder="Įveskite saugų slaptažodį" >
+      <br>
+      <input type="submit" class="searchButton" value="Registruotis">
+    </form>
+    <br>
+    <br>
+    <div class="buttons">
+      <a href="/login"> <button class="searchButton">Prisijungti</button></a>
+     </div>
+  </div>
+
+</body>
+</html> 

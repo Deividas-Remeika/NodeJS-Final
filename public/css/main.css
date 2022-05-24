@@ -23,12 +23,6 @@ body {
   margin-bottom: 16px;
 }
 
-/* .isrikiavimas {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-} */
-
 .rikiavimoForma {
   margin-bottom: 16px;
 }
@@ -62,3 +56,15 @@ body {
 .content {
   margin-bottom: 36px;
 }
+
+.registerSuccess {
+  background-color: #69db7c;
+  color: #071D0B;
+  font-weight: 700;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
