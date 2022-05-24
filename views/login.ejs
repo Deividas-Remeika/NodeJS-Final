@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head')%>
+  <title>Prisijungimas</title>
+</head>
+<body>
+  <div class="forma2">
+  <form action="/login" method="POST" class="prisijungimas">
+
+    <h2>Prisijunkite norėdami rašyti ir trinti savo dienoraščius</h2>
+
+      <label for="name" class="inputStyle">Jūsų prisijungimo vardas</label>
+      <br>
+      <input type="text" name="name" id="name" class="inputStyle" placeholder="Pvz: Deividas">
+      <br>
+      <label for="password" class="password">Jūsų slaptažodis</label>
+      <br>
+      <input type="password" name="password" id="pass" class="inputStyle" placeholder="Įveskite savo slaptažodį" >
+      <br> 
+      <br>
+      <input type="submit" class="mainButton" value="Prisijungti">
+    </form>
+
+    <div class="buttons">
+      <a href="/register"> <button class="mainButton">Registruotis</button></a>
+      <a href="/home"> <button class="mainButton">Pagrindinis</button></a>
+     </div>
+  </div>
+</body>
+</html> 

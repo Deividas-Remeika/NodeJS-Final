@@ -2,45 +2,60 @@
 <html lang="en">
 <head>
   <%- include('partials/head')%>
-  <title>Dienoraščių puslapis</title>
+  <title>Paskyros valdymas</title>
 </head>
 <body>
   <div class="mainContainer">
-    <img src="https://i.imgur.com/mGuSAtX.png" width="350px" height="150px">
+
+    <h1> Sveikiname prisijungus, <br> <%=token.name%> </h1>
+
     <div class="loginOrRegister">
-      <span><p>Jeigu norite rašyti savo dienoraščius mūsų puslapyje privalote prisijungti arba užsiregistruoti</p></span>
-    <div class="registerOrLogin">
-      <a href="/login"><button class="ieskoti">Prisijungti</button></a>
-      <a href="/register"><button class="ieskoti">Užsiregistruoti</button></a>
-    </div>
+      <a href="/addblog"><button class="mainButton">Pridėti naują dienoraštį</button></a>
+      <a href="/logout"><button class="mainButton"  onclick="logout()">Atsijungti nuo vartotojo</button></a>
+
       </div>
     <div class="isrikiavimas">
       <form action="/home" method="GET" class="rikiavimoForma">
-        <h2>Išsirūšiuokite mūsų puslapyje esančius dienoraščius</h2>
-            <select name="isrikiuotiPagal" id="isrikiuotiPagal" class="inputas">
+        <h2>Išrūšiuoti savo dienoraščius </h2>
+            <select name="isrikiuotiPagal" id="isrikiuotiPagal" class="inputStyle">
              <option value="null">Pasirinkite vieną iš galimų pasirinkimų</option>
               <option value="title">Išrūšiuoti pagal pavadinimą</option>
                <option value="id">Išrūšiuoti pagal ID</option>
                <option value="created_at">Išrūšiuoti pagal sukūrimo laiką</option>
             </select>
             <br>
-            <select name="isrikiavimas" id="isrikiavimas" class="inputas">
+            <select name="isrikiavimas" id="isrikiavimas" class="inputStyle">
               <option value="null">Pasirinkite vieną iš galimų pasirinkimų</option>
               <option value="didejanti">Didėjančia tvarka</option>
               <option value="mazejanti">Mažėjančia tvarka</option>
             </select>
             <br>
-            <input type="submit" class="submitButton" value="Išrikiuoti">
+            <input type="submit" class="mainButton" value="Išrikiuoti">
             </form>
-            <a href="/home"><button class="resetButton">Perkrauti rikiavimą</button></a>
+            <a href="/home"><button class="mainButton">Perkrauti rikiavimą</button></a>
      </div>
 <%blogs.forEach(item=>{%>
   <div class="content">
     <div class="content_id">Dienoraščio ID: <%=item.id%></div>
     <div class="content_title">Pavadinimas: <%=item.title%></div>
     <div class="content_contents"><p><%=item.content%></p></div>
+    <% if(auth){ %>
+      <p>Ištrinti įrašą:</p><button class="deleteButton"  onclick="istrinti('<%=item.id%>')">Ištrinti</button>
+      <% }%>
   </div>
-<%})%>
+  <%})%>
   </div>
 </body>
-</html> 
+</html>
+<script>
+  const logout = () => {
+  document.cookie = 'token=; Max-Age=0'
+  window.location.replace('/home')
+  }
+  
+  const istrinti=(id)=>{
+    fetch(`addblog/blogs/${id}`, { method: 'DELETE' })
+    .then(window.location.replace('/user'))
+  }
+  
+  </script> 

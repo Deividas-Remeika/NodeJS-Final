@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head')%>
+  <title>Pridėti naują dienoraštį</title>
+</head>
+<body>
+  <div class="mainContainer">
+    <form action="/addblog" method="POST" class="dienorascioKurimas">
+      <h2>Pridėti naują dienoraštį</h2>
+        <label for="title" class="inputStyle">Įrašykite dienoraščio pavadinimą</label>
+        <input type="text" name="title" id="title" class="inputStyle" placeholder="Dienoraščio pavadinimas" >
+        <label for="content" class="inputStyle" >Įrašykite tekstą </label>
+        <textarea id="content" name="content" rows="20" cols="60"></textarea>
+      <input type="submit" class="mainButton" value="Pridėti dienoraštį">
+      </form>
+      <div>
+        <a href="/"><button class="mainButton">Pagrindinis</button></a>
+    </div>
+  </div>
+</body>
+</html> 

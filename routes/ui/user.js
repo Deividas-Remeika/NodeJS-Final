@@ -1,11 +1,12 @@
 import express from "express";
-import connect from "../../mysqlConnect.js";
 import isAuth from '../../isAuth.js';
+import connect from "../../mysqlConnect.js";
 
 const router = express.Router()
 
 router.get('/', async (req, res) => {
   try {
+
     const auth = await isAuth(req)
     let isrikiuotiPagal = req.query.isrikiuotiPagal;
     let isrikiavimoTvarka = req.query.isrikiavimas;
@@ -22,11 +23,16 @@ router.get('/', async (req, res) => {
       isrikiavimoTvarka = "ASC"
     }
 
-    const [data] = await connect.query(`SELECT blog.id,blog.title,blog.content FROM blogs.blog ORDER BY ${isrikiuotiPagal} ${isrikiavimoTvarka}`);
-    res.render('home', { blogs: data, auth: auth })
+    const [data] = await connect.query(`
+    SELECT 
+      blog.id,
+      blog.title,
+      blog.content 
+      FROM blogs.blog JOIN user ON user.id=blog.author_id WHERE author_id=${req.token.id} ORDER BY ${isrikiuotiPagal} ${isrikiavimoTvarka}`);
+    res.render('ui', { blogs: data, auth: auth, token: req.token })
   } catch (err) {
-    res.send({ err: `Error: ${err}` })
+    res.send({ err: `Klaida: ${err}` })
   }
 })
 
-export default router 
+export default router
